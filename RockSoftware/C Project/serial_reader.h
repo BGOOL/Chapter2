@@ -1,128 +1,125 @@
 /*
  *Serial Reader Header File
  *Author(s): Ivar Tylén
- *Purpose: Containes declarations used in serial_reader.c
+ *Purpose: Contains declarations used in serial_reader.c
  *Last Modified: 2025-02-10
  */
 
-
 #ifndef serial_reader.h
 #define serial_reader.h
-#include "stdio.h"
+#include <stdio.h>
 
-            /*Variable declarations/definitions*/
+/*Variable declarations/definitions*/
 
 /*Misc may be moved*/
-extern float loadVoltage = 0; //Used in readLoad function, see src-file.
-extern float temperature = 0; //Used in readTMP36, readTemp, readIR -||-
+extern float pressureVoltage; //Used in readPressure function
+extern float loadVoltage; // Used in readLoad function, see src-file.
+extern float temperature; // Used in readTMP36, readTemp, readIR -||-
 
 /*Pressure Sensor "Positions". Used for --*/
-int const FEEDING_PRESSURE_OXIDIZER = 0;
-int const LINE_PRESSURE = 1;
-int const CHAMBER_PRESSURE = 2;
-int const FEEDING_PRESSURE_N2 = 3;
-int const FEEDING_PRESSURE_OXIDIZER2 = 4;
+extern int const FEEDING_PRESSURE_OXIDIZER;
+extern int const LINE_PRESSURE;
+extern int const CHAMBER_PRESSURE;
+extern int const FEEDING_PRESSURE_N2;
+extern int const FEEDING_PRESSURE_OXIDIZER2;
 
 /*Thermocouple "Locations"*/
-int const Not_Connected_0 = 0;
-int const Not_Connected_1 = 1;
-int const Nozzle_TC = 2;
-int const Ambient_TC = 3;
+extern int const Not_Connected_0;
+extern int const Not_Connected_1;
+extern int const Nozzle_TC;
+extern int const Ambient_TC;
 
 /*ADC Resolution*/
-int const resolutionADC = 10;
+extern int const resolutionADC;
 
 /*Max ADC Value*/
-float const resolutionADC = 1023.00;
+extern float const maxADC;
 
 /*ADC Reference Voltage*/
-float const refADC = 5.00;
+extern float const refADC;
 
 /*IR Sensor Min and Max values*/
-int const minIR = -50;
-int const maxIR = 1030;
+extern int const minIR;
+extern int const maxIR;
 
 /*TMP 36 Min and Max values*/
-int const minTMP36 = -40;
-int const maxTMP36 = 125;
+int const minTMP36;
+int const maxTMP36;
 
 /*
  * Load Cell Min and Max values
- * TBD For new Pressure Sensor
+ * TBD For new Load Cell
  */
-int const minLoad= 0;
-float const maxLoad = 250 * 4.44822; //Conversion from lbf to Newtons
+int const minLoad;
+float const maxLoad; // Conversion from lbf to Newtons
 
 /*Load Cell Calibration, TBD new sensor*/
 
-
-
-                /*Pressure Sensor Calibration Data*/
+/*Pressure Sensor Calibration Data*/
 
 /*Pressure Sensor Maximum Pressures*/
-float const maxPressure_100Bar = 100.0;
-float const maxPressure_25Bar = 25.0;
+float const maxPressure_100Bar;
+float const maxPressure_25Bar;
 
 /*
  *Pressure Sensor 0 (Serial Number 667662)
- *Oxidizer Feeding 1 Pressure Sensor 
+ *Oxidizer Feeding 1 Pressure Sensor
  */
- float const pressureZero0 = -0.003; //Voltage
- float const pressureSpan0 = 5.003; //Voltage
- float const pressureLinearity0 = 0.12493; //Percent. Not used for Calibration.
- float const pressureLine_K0 = maxPressure_100Bar / pressureSpan0;
- float const pressureLine_B0 = maxPressure_100Bar - pressureLine_K0 * (pressureSpan0 + pressureZero0);
+float const pressureZero0;       // Voltage
+float const pressureSpan0;       // Voltage
+float const pressureLinearity0;  // Percent. Not used for Calibration.
+float const pressureLine_K0;
+float const pressureLine_B0;
 
 /*
  *Pressure Sensor 1 (Serial Number 1073014)
- *Line Pressure Sensor   
+ *Line Pressure Sensor
  */
- float const pressureZero1 = 0.01; //Voltage
- float const pressureSpan1 = 4.997; //Voltage
- float const pressureLinearity = 0.10154; //Percent. Not used for Calibration.
- float const pressureLine_K1 = maxPressure_100Bar / pressureSpan1;
- float const pressureLine_B1 = maxPressure_100Bar - pressureLine_K1 * (pressureSpan1 + pressureZero1);
+float const pressureZero1;        // Voltage
+float const pressureSpan1;       // Voltage
+float const pressureLinearity1; // Percent. Not used for Calibration.
+float const pressureLine_K1;
+float const pressureLine_B1;
 
- /*
+/*
  *Pressure Sensor 2 (Serial Number 1040112)
- *Chamber Pressure Sensor   
+ *Chamber Pressure Sensor
  */
- float const pressureZero2 = 0.00; //Voltage
- float const pressureSpan2 = 4.996; //Voltage
- float const pressureLinearity2 = 0.03146; //Percent. Not used for Calibration.
- float const pressureLine_K2 = maxPressure_100Bar / pressureSpan2;
- float const pressureLine_B2 = maxPressure_100Bar - pressureLine_K2 * (pressureSpan2 + pressureZero2);
+float const pressureZero2;         // Voltage
+float const pressureSpan2;        // Voltage
+float const pressureLinearity2; // Percent. Not used for Calibration.
+float const pressureLine_K2;
+float const pressureLine_B2;
 
- /*
+/*
  *Pressure Sensor 3 (Serial Number 1086286)
- *Nitrogen Feeding Pressure Sensor   
+ *Nitrogen Feeding Pressure Sensor
  */
- float const pressureZero3 = -0.005; //Voltage
- float const pressureSpan3 = 5.007; //Voltage
- float const pressureLinearity3 = 0.03709; //Percent. Not used for Calibration.
- float const pressureLine_K3 = maxPressure_100Bar / pressureSpan3;
- float const pressureLine_B3 = maxPressure_100Bar - pressureLine_K3 * (pressureSpan3 + pressureZero3);
+float const pressureZero3;       // Voltage
+float const pressureSpan3;        // Voltage
+float const pressureLinearity3; // Percent. Not used for Calibration.
+float const pressureLine_K3;
+float const pressureLine_B3;
 
- /*
+/*
  *Pressure Sensor 4 (Serial Number 1086284)
  *Oxidizer Feeding 2 Pressure Sensor
  */
- float const pressureZero4 = 0.0091; //Voltage
- float const pressureSpan4 = 5.0001; //Voltage
- float const pressureLinearity4 = -0.03750; //Percent. Not used for Calibration.
- float const pressureLine_K4 = maxPressure_100Bar / pressureSpan4;
- float const pressureLine_B4 = maxPressure_100Bar - pressureLine_K4 * (pressureSpan4 + pressureZero4);
+float const pressureZero4;        // Voltage
+float const pressureSpan4;        // Voltage
+float const pressureLinearity4; // Percent. Not used for Calibration.
+float const pressureLine_K4;
+float const pressureLine_B4;
 
- /*Create Arrays containing the calibration data for the Pressure Sensors. Used in main.*/
- float pressureCalibration_K[5] = {pressureLine_K0, pressureLine_K1, pressureLine_K2, pressureLine_K3, pressureLine_K4};
- float pressureCalibration_B[5] = {pressureLine_B0, pressureLine_B1, pressureLine_B2, pressureLine_B3, pressureLine_B4};
+/*Create Arrays containing the calibration data for the Pressure Sensors. Used in main.*/
+float pressureCalibration_K[5];
+float pressureCalibration_B[5];
 
-
-                /*Function Declarations*/
-            /*See source file for definitions*/
+/*Function Declarations*/
+/*See source file for definitions*/
 
 /*The following functions are defined in serial_reader_sensors.c*/
-float readPressure(float pressureVoltage, float sensorNum);
+float readPressure(float sensorValue, int sensorNum);
 
 float readLoad(float sensorValue);
 
@@ -135,7 +132,6 @@ float readIR(float sensorValue);
 /*The following functions are defined in serialcomms.c*/
 char read_message(char ser);
 
-char arduinoPort
-
+void arduinoPort();
 
 #endif
