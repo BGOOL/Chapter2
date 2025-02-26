@@ -5,8 +5,8 @@
  *Last Modified: 2025-02-10
  */
 
-#ifndef serial_reader.h
-#define serial_reader.h
+#ifndef serial_reader
+#define serial_reader
 #include <stdio.h>
 
 /*Variable declarations/definitions*/
@@ -134,4 +134,4 @@ char read_message(char ser);
 
 void arduinoPort();
 
-#endif
+#endif //serial_reader.h

@@ -12,8 +12,8 @@
 #include <stdio.h>
 #include "serial_reader.h"
 
-#ifndef serial_reader_src.c
-#define serial_reader_src.c
+#ifndef serial_reader_sensors
+#define serial_reader_sensors
 
 /*Variable Definitions*/
 /*Misc may be moved*/
@@ -156,4 +156,4 @@ float readIR(float sensorValue)
     return temperature = (sensorValue / maxADC) * (maxIR - minIR) + minIR;
 }
 
-#endif
+#endif //serial_reader_sensors

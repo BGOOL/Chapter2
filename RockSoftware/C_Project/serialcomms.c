@@ -6,17 +6,17 @@
  * Last modified: 2025-02-10
  */
 
-#ifndef serialcomms.c
-#define serialcomms.c
+#ifndef serialcomms
+#define serialcomms
 /*C Library Headers*/
 #include <stdio.h>
 #include <string.h>
 
 /*Linux Specific Libraries*/
-// #include <fcntl.h> //Contains file controls like O_RDWR
-// #include <errno.h> //Error integer and strerror() function
-// #include <termios.h> //POSIX terminal control definitions
-// #include <unistd.h> //write(), read(), close()
+ #include <fcntl.h> //Contains file controls like O_RDWR
+ #include <errno.h> //Error integer and strerror() function
+ #include <termios.h> //POSIX terminal control definitions
+ #include <unistd.h> //write(), read(), close()
 
 /*User Defined Libraries*/
 #include "serial_reader.h"
@@ -44,4 +44,4 @@ void arduinoPort()
      */
 }
 
-#endif
+#endif //serial_comms
